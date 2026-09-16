@@ -16,6 +16,8 @@ CLEAN_MEDICATIONS_FILE = PROCESSED_DIR / "medications_cleaned.xlsx"
 
 STRUCTURED_PATIENTS_FILE = PROCESSED_DIR / "patients.json"
 
+ENRICHED_PATIENTS_FILE = PROCESSED_DIR / "patients_enriched.json"
+
 SCHEMA_FILE = ROOT_DIR / "schema" / "patient_schema.json"
 
 OLLAMA_URL = os.getenv(
