@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "patient_id",
+    "avr",
+    "risk_factors",
+    "echo",
+    "events",
+    "outcome"
+  ],
+  "properties": {
+    "patient_id": {
+      "type": "string"
+    },
+    "avr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "avr_date",
+        "valve_type",
+        "valve_model",
+        "valve_size_mm"
+      ],
+      "properties": {
+        "avr_date": {
+          "type": ["string", "null"]
+        },
+        "valve_type": {
+          "type": ["string", "null"]
+        },
+        "valve_model": {
+          "type": ["string", "null"]
+        },
+        "valve_size_mm": {
+          "type": ["number", "null"]
+        }
+      }
+    },
+    "risk_factors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "age_at_avr_years",
+        "sex",
+        "hypertension",
+        "diabetes",
+        "chronic_kidney_disease",
+        "coronary_artery_disease",
+        "heart_failure"
+      ],
+      "properties": {
+        "age_at_avr_years": {
+          "type": ["number", "null"]
+        },
+        "sex": {
+          "type": "string"
+        },
+        "hypertension": {
+          "type": "string"
+        },
+        "diabetes": {
+          "type": "string"
+        },
+        "chronic_kidney_disease": {
+          "type": "string"
+        },
+        "coronary_artery_disease": {
+          "type": "string"
+        },
+        "heart_failure": {
+          "type": "string"
+        }
+      }
+    },
+    "echo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "last_echo_date",
+        "mean_gradient_mmhg",
+        "peak_gradient_mmhg",
+        "lvef_percent",
+        "aortic_regurgitation"
+      ],
+      "properties": {
+        "last_echo_date": {
+          "type": ["string", "null"]
+        },
+        "mean_gradient_mmhg": {
+          "type": ["number", "null"]
+        },
+        "peak_gradient_mmhg": {
+          "type": ["number", "null"]
+        },
+        "lvef_percent": {
+          "type": ["number", "null"]
+        },
+        "aortic_regurgitation": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "date",
+          "type",
+          "description"
+        ],
+        "properties": {
+          "date": {
+            "type": ["string", "null"]
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prosthetic_valve_failure",
+        "structural_valve_deterioration",
+        "reintervention",
+        "event_date"
+      ],
+      "properties": {
+        "prosthetic_valve_failure": {
+          "type": "string"
+        },
+        "structural_valve_deterioration": {
+          "type": "string"
+        },
+        "reintervention": {
+          "type": "string"
+        },
+        "event_date": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  }
+}
