@@ -114,8 +114,8 @@ def main():
         patients,
         start=1
     ):
- #       if index == 4:
- #           break
+        if index == 4:
+            break
 
         print(
             f"[{index}] Processing {patient_id}..."
