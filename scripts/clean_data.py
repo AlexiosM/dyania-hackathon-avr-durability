@@ -1,64 +1,56 @@
 import sys
+from pathlib import Path
 
-sys.path.insert(0, ".")
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 
 from src.config import (
-    NOTES_FILE,
+    LABS_CLEAN_FILE,
     LABS_FILE,
+    MEDICATIONS_CLEAN_FILE,
     MEDICATIONS_FILE,
-    CLEAN_NOTES_FILE,
-    CLEAN_LABS_FILE,
-    CLEAN_MEDICATIONS_FILE
+    NOTES_CLEAN_FILE,
+    NOTES_FILE,
+    PROCESSED_DIR,
 )
+from src.data_loader import load_excel, save_json
 
-from src.data.loading import load_excel_files
-from src.data.cleaning import clean_all
+
+def clean_file(source, destination):
+    print(f"Reading {source}")
+
+    records = load_excel(source)
+
+    save_json(
+        records,
+        destination,
+    )
+
+    print(
+        f"  {len(records)} records -> {destination}"
+    )
 
 
 def main():
-    notes, labs, medications = load_excel_files(
-        NOTES_FILE,
-        LABS_FILE,
-        MEDICATIONS_FILE
-    )
-
-    print("Before cleaning:")
-    print(f"  Notes:        {len(notes)}")
-    print(f"  Labs:         {len(labs)}")
-    print(f"  Medications:  {len(medications)}")
-
-    notes, labs, medications = clean_all(
-        notes,
-        labs,
-        medications
-    )
-
-    print("\nAfter cleaning:")
-    print(f"  Notes:        {len(notes)}")
-    print(f"  Labs:         {len(labs)}")
-    print(f"  Medications:  {len(medications)}")
-
-    CLEAN_NOTES_FILE.parent.mkdir(
+    PROCESSED_DIR.mkdir(
         parents=True,
-        exist_ok=True
+        exist_ok=True,
     )
 
-    notes.to_excel(
-        CLEAN_NOTES_FILE,
-        index=False
+    clean_file(
+        NOTES_FILE,
+        NOTES_CLEAN_FILE,
     )
 
-    labs.to_excel(
-        CLEAN_LABS_FILE,
-        index=False
+    clean_file(
+        LABS_FILE,
+        LABS_CLEAN_FILE,
     )
 
-    medications.to_excel(
-        CLEAN_MEDICATIONS_FILE,
-        index=False
+    clean_file(
+        MEDICATIONS_FILE,
+        MEDICATIONS_CLEAN_FILE,
     )
-
-    print("\nCleaned files written.")
 
 
 if __name__ == "__main__":

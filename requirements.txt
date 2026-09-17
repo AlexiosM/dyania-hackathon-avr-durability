@@ -2,3 +2,6 @@ pandas
 openpyxl
 requests
 jsonschema
+numpy
+scikit-learn
+scikit-survival
